@@ -1,39 +1,38 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const UserController = require('./controllers/UserController')
 
+const app = express()
+const PORT = process.env.PORT || 4000
 
-const app = express();
-const PORT = process.env.PORT || 4000;
+app.use(cors())
+app.use(express.json())
 
-// Define middleware here
-app.use(cors());
-app.use(express.json());
-
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config()
-    // app.use(express.static("client/build"));
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config()
 }
 
 app.get('/', (req, res) => {
-    res.send(" server connected successfuly .....\n");
-});
+	res.send('Hello from Node.js app \n')
+})
 
-// Connect to the Mongo DB
+app.get('/register', (req, res) => {
+	res.send('Welcome to Register \n')
+})
+
+app.post('/register', UserController.store)
+
 try {
-    mongoose.connect(process.env.MONGO_DB_CONNECTION, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    console.log('Mongodb connected successfuly !')
+	mongoose.connect(process.env.MONGO_DB_CONNECTION, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	console.log('MongoDb connected successfully!')
 } catch (error) {
-    console.log(" error.message");
- 
+	console.log(error)
 }
 
-
-// Start the API server
 app.listen(PORT, () => {
-    console.log(`API Server now listening on PORT ${PORT}!`)
+	console.log(`Listening on ${PORT}`)
 })
