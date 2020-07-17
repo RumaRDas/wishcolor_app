@@ -11,10 +11,11 @@ module.exports = {
 			if (!existentUser) {
 				const hashedPassword = await bcrypt.hash(password, 10);
 				const user = await User.create({
-					firstName: firstName,
-					lastName: lastName,
+					firstName,
+					lastName,
+					email,
 					password: hashedPassword,
-					email: email
+			
 				});
 				return res.json(user);
 			}
