@@ -16,6 +16,7 @@ routes.get('/', (req, res) => {
 //Gradient
 routes.post('/gradient', upload.single("thumbnail") ,GradientController.createGradient )
 routes.get('/gradient/:gradientId', GradientController.getGradientById)
+routes.get('/gradient',GradientController.geAlltGradient)
 
 //user
 routes.post('/register', UserController.createUser)

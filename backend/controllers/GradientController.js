@@ -27,11 +27,16 @@ module.exports = {
         throw Error(`Error while Creating  new Gradient :  ${error}`)
     }
     },
-    async getGradientById(req, res) {
+ getGradientById: function(req, res) {
         const { gradientId } = req.params;
         Gradient.findById(gradientId)
       .then(gradient => res.json(gradient))
       .catch(err => res.status(422).json('Gradient Id does not exists'));
-    }
+    },
+ geAlltGradient: function (req, res) {
+        Gradient.find(req.query)
+      .then(gradient => res.json(gradient))
+      .catch(err => res.status(422).json('We dont have anay gradient'));
+    },
      
 }
