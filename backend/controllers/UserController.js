@@ -26,7 +26,8 @@ module.exports = {
 	},
 
 getUserById : function(req, res){
-	User.findById(req.params.id)
+	const { userId } = req.params;
+	User.findById(userId)
       .then(user => res.json(user))
       .catch(err => res.status(422).json('User Id does not exists'));
 
