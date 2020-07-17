@@ -38,5 +38,11 @@ module.exports = {
       .then(gradient => res.json(gradient))
       .catch(err => res.status(422).json('We dont have anay gradient'));
     },
-     
+ getGradient: function(req, res) {
+    const { color } = req.params;
+    const {query} = { color} || {}
+    Gradient.find(query)
+  .then(gradients => res.json(gradients))
+  .catch(err => res.status(422).json('Gradient Id does not exists'));
+},
 }
