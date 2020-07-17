@@ -7,6 +7,6 @@ routes.get('/', (req, res) => {
 })
 
 routes.post('/register', UserController.createUser)
-routes.get('/user/:userid', UserController.getUserById)
+routes.get('/user/:id', UserController.getUserById)
 
 module.exports = routes;

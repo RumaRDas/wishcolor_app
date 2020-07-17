@@ -24,15 +24,21 @@ module.exports = {
 			throw Error(`Error while Registering new user :  ${error}`)
 		}
 	},
-	async getUserById(req, res ) {
-		const { userid } = req.params;
-		try {
-			const user =  User.findById(userid);
-			return res.json(user)
-		} catch (error) {
-			return res.status(400).json({
-				message: "User Id does not exists"
-			})
-	}
-},
+// 	async getUserById(req, res ) {
+// 		const { userid } = req.params;
+// 		try {
+// 			const user =  User.findById(userid);
+// 			return res.json(user)
+// 		} catch (error) {
+// 			return res.status(400).json({
+// 				message: "User Id does not exists"
+// 			})
+// 	}
+// },
+getUserById : function(req, res){
+	User.findById(req.params.id)
+      .then(user => res.json(user))
+      .catch(err => res.status(422).json('User Id does not exists'));
+
+}
 }
