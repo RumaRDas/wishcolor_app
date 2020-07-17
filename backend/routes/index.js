@@ -17,6 +17,7 @@ routes.get('/', (req, res) => {
 routes.get('/gradient/:color',GradientController.getGradient)
 routes.post('/gradient', upload.single("thumbnail") ,GradientController.createGradient )
 routes.get('/gradient/:gradientId', GradientController.getGradientById)
+routes.delete('/gradient/:gradientId', GradientController.delete)
 routes.get('/gradient',GradientController.geAlltGradient)
 
 //user

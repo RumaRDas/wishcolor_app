@@ -50,7 +50,17 @@ module.exports = {
             }
 
         } catch (error) {
-            throw Error(`We do not have any gradient :  ${error}`)
+            throw Error(`We do not have any gradient of that color :  ${error}`)
         }
     },
+    async delete(req, res) {
+        const { gradientId } = req.params;
+        try{
+            await Gradient.findByIdAndDelete(gradientId)
+            return res.send(" Gradient deleted successfully")
+        }
+        catch (error) {
+            throw Error(`We do not have any Gradient with that id  :  ${error}`)
+        }
+    }
 }
