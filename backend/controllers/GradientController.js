@@ -24,8 +24,14 @@ module.exports = {
         return res.json(gradient);
     }
     catch (error) {
-        throw Error(`Error while Registering new user :  ${error}`)
+        throw Error(`Error while Creating  new Gradient :  ${error}`)
     }
+    },
+    async getGradientById(req, res) {
+        const { gradientId } = req.params;
+        Gradient.findById(gradientId)
+      .then(gradient => res.json(gradient))
+      .catch(err => res.status(422).json('Gradient Id does not exists'));
     }
      
 }
