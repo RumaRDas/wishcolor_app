@@ -5,6 +5,7 @@ const UserController = require('../controllers/UserController');
 const GradientController = require('../controllers/GradientController');
 const DashboardController = require('../controllers/DashboardController');
 const LoginController = require('../controllers/LoginController');
+const RagistrationController = require('../controllers/RagistrationController');
 
 //Uploading file
 const uploadConfig = require('../config/upload')
@@ -19,9 +20,15 @@ routes.get('/', (req, res) => {
 routes.post('/login',LoginController.store )
 //Todo Subscribe Controller
 
+//ToDO get an registration byId
+
+
 //Todo Approval Controller
 
 //Tode Reject Controller
+
+//Raistration Controller
+routes.post('/registration/:gradientId', RagistrationController.create)
 
 //Dashboard
 routes.get('/gradient',DashboardController.geAlltGradient)

@@ -4,7 +4,6 @@ const GradientSchema = new mongoose.Schema({
     title: String,
     description: String,
     price: Number,
-    color: String,
     thumbnail: String,
     date:Date,
     user:{

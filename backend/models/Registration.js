@@ -11,7 +11,6 @@ const RegisterSchema = new mongoose.Schema({
  gradient:{
      type: mongoose.Schema.Types.ObjectId,
      ref: "Gradient"
-
  }
 })
-module.exports = mongoose.model('User', RegisterSchema);
+module.exports = mongoose.model('Registration', RegisterSchema);
