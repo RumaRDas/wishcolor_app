@@ -16,27 +16,25 @@ routes.get('/', (req, res) => {
 	res.send('Hello from Node.js app \n')
 })
 
-//Todo Login Controller
-routes.post('/login',LoginController.store )
+//Login Controller
+routes.post('/login', LoginController.store)
 //Todo Subscribe Controller
 
-//ToDO get an registration byId
-
-
-//Todo Approval Controller
 
 //Tode Reject Controller
+//Approval Controller
+
 
 //Raistration Controller
 routes.post('/registration/:gradientId', RagistrationController.create)
-
+routes.get('/registration/:registration_id', RagistrationController.getRegistration)
 //Dashboard
-routes.get('/gradient',DashboardController.geAlltGradient)
+routes.get('/gradient', DashboardController.geAlltGradient)
 routes.get('/gradient/:gradientId', DashboardController.getGradientById)
-routes.get('/gradient/:color',DashboardController.getGradient)
+routes.get('/gradient/:color', DashboardController.getGradient)
 
 //Gradient
-routes.post('/gradient', upload.single("thumbnail") ,GradientController.createGradient )
+routes.post('/gradient', upload.single("thumbnail"), GradientController.createGradient)
 routes.delete('/gradient/:gradientId', GradientController.delete)
 
 
