@@ -3,6 +3,8 @@ const multer = require('multer');
 
 const UserController = require('../controllers/UserController');
 const GradientController = require('../controllers/GradientController');
+const DashboardController = require('../controllers/DashboardController');
+const LoginController = require('../controllers/LoginController');
 
 //Uploading file
 const uploadConfig = require('../config/upload')
@@ -13,12 +15,23 @@ routes.get('/', (req, res) => {
 	res.send('Hello from Node.js app \n')
 })
 
+//Todo Login Controller
+routes.post('/login',LoginController.store )
+//Todo Subscribe Controller
+
+//Todo Approval Controller
+
+//Tode Reject Controller
+
+//Dashboard
+routes.get('/gradient',DashboardController.geAlltGradient)
+routes.get('/gradient/:gradientId', DashboardController.getGradientById)
+routes.get('/gradient/:color',DashboardController.getGradient)
+
 //Gradient
-routes.get('/gradient/:color',GradientController.getGradient)
 routes.post('/gradient', upload.single("thumbnail") ,GradientController.createGradient )
-routes.get('/gradient/:gradientId', GradientController.getGradientById)
 routes.delete('/gradient/:gradientId', GradientController.delete)
-routes.get('/gradient',GradientController.geAlltGradient)
+
 
 //user
 routes.post('/register', UserController.createUser)
