@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import api from '../../services/api';
-import '../../styles/index.scss'
+
 
 
 const Login = ({history}) => {
@@ -27,19 +27,13 @@ const Login = ({history}) => {
     return (
         <div>
             <div className="field" >
-                <div className="control has-icons-left has-icons-right">
+                <div className="control">
                     <input className="input is-danger" type="email" placeholder="Your email" name ="email" id= "email" onChange={evt =>setEmail(evt.target.value)} />
-                    <span className="icon is-small is-left">
-                        <i className="fas fa-envelope"></i>
-                    </span>
-                    <span className="icon is-small is-right">
-                        <i className="fas fa-exclamation-triangle"></i>
-                    </span>
-                </div>y
+                </div>
             </div>
             <div className="field">
                 <div className="control">
-                    <input className="input" type="password" name="password" id="password" placeholder="Password" onChange={evt =>setPassword(evt.target.value)}  />
+                    <input className="input is-info" type="password" name="password" id="password" placeholder="Password" onChange={evt =>setPassword(evt.target.value)}  />
                 </div>
             </div>
             <div className="control">

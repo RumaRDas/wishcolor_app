@@ -30,7 +30,7 @@ routes.post('/registration/:registration_id/rejection', RejectionController.reje
 //Approval Controller
 routes.post('/registration/:registration_id/approval', ApprovalController.approve )
 
-//Raistration Controller
+//Registration Controller
 routes.post('/registration/:gradientId', RagistrationController.create)
 routes.get('/registration/:registration_id', RagistrationController.getRegistration)
 
