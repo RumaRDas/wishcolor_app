@@ -2,12 +2,14 @@ const Gradient = require('../models/Gradient');
 const User = require('../models/User');
 
 module.exports = {
+    //todo async
     getGradientById: function (req, res) {
         const { gradientId } = req.params;
         Gradient.findById(gradientId)
             .then(gradient => res.json(gradient))
             .catch(err => res.status(422).json('Gradient Id does not exists'));
     },
+    //todo async
     geAlltGradient: function (req, res) {
         Gradient.find(req.query)
             .then(gradient => res.json(gradient))
