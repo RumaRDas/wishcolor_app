@@ -1,7 +1,9 @@
 import React from 'react';
-import Container from '../../Container'
+import Container from '../../Container';
 
-const index = () =>{
+
+//Dashboard will show all the events
+const Dashboard = () =>{
     return (
         <Container style={{ minHeight: "500pxs"  }}>
         <h1>Hello Dashboard</h1>
@@ -10,4 +12,4 @@ const index = () =>{
     )
 }
 
-export default index;
+export default Dashboard;
