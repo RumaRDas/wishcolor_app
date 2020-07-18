@@ -31,6 +31,7 @@ const Registration = ({ history }) => {
         <Container>
         <div>
         <h1 className= "regHeader"> Register</h1>
+        <p>Please <strong>Register</strong> fr a new account</p>
             <div className="field" >
                 <div className="control">
                     <input className="input is-danger" type="text" placeholder="First Name" name="firstName" id="firstName" onChange={evt => setFirstName(evt.target.value)} />
