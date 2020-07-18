@@ -26,7 +26,7 @@ module.exports = {
             }
         }
         catch (error) {
-            throw Error(`Error to log in :  ${error}`)
+            return res.status(400).json({ message: "Error to log in" })
 
         }
     }
