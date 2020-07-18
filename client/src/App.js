@@ -1,12 +1,17 @@
 import React from 'react';
-import Login from './pages/Login'
+import Container from './pages/Container';
+import Routes from './Routes';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Login />
+    <div>
+    <Container>
+<Routes/>
+
+    </Container>
     </div>
+
   );
 }
 
