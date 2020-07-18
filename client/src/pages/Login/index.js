@@ -10,7 +10,7 @@ const Login = ({ history }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = async evt => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
         console.log("result of submit", email, password);
 
