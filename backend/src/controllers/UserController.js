@@ -24,7 +24,7 @@ module.exports = {
 			throw Error(`Error while Registering new user :  ${error}`)
 		}
 	},
-
+//todo async 
 getUserById : function(req, res){
 	const { userId } = req.params;
 	User.findById(userId)
