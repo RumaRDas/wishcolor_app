@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import Container from '../Container';
 import api from '../../services/api';
+import './style.css'
 
 
 const Registration = ({ history }) => {
@@ -26,7 +28,9 @@ const Registration = ({ history }) => {
     }
 
     return (
+        <Container>
         <div>
+        <h1 className= "regHeader"> Register</h1>
             <div className="field" >
                 <div className="control">
                     <input className="input is-danger" type="text" placeholder="First Name" name="firstName" id="firstName" onChange={evt => setFirstName(evt.target.value)} />
@@ -51,6 +55,7 @@ const Registration = ({ history }) => {
                 <button className="button is-link" onClick={handleSubmit}>Submit</button>
             </div>
         </div>
+        </Container>
     )
 }
 

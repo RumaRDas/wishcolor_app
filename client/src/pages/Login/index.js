@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import api from '../../services/api';
+import Container from '../Container';
+import './style.css'
 
 
 
@@ -25,7 +27,10 @@ const Login = ({history}) => {
     }
 
     return (
+    
         <div>
+        <Container>
+        <h1 className="logHeader"> Login</h1>
             <div className="field" >
                 <div className="control">
                     <input className="input is-danger" type="email" placeholder="Your email" name ="email" id= "email" onChange={evt =>setEmail(evt.target.value)} />
@@ -39,7 +44,9 @@ const Login = ({history}) => {
             <div className="control">
                 <button className="button is-link" onClick={handleSubmit}>Submit</button>
             </div>
+            </Container>
         </div>
+      
     )
 }
 
