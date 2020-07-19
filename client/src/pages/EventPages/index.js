@@ -13,11 +13,12 @@ const EventsPage = () => {
     const [date, setDate] = useState("");
     const [color, setColor] = useState("");
     const [thumbnail, setThumbnail] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(false);
+
 
     const preview = useMemo(() => {
         return thumbnail ? URL.createObjectURL(thumbnail) : null;
     }, [thumbnail])
-
 
 
     const submitHandler = async (evt) => {
@@ -33,26 +34,34 @@ const EventsPage = () => {
         eventData.append('description', description)
         eventData.append('date', date)
 
-        if (
-            title !== '' &&
-            color !== '' &&
-            price !== "" &&
-            date !== "" &&
-            thumbnail !== null &&
-            description !== ''
-            ){
-                try{
-                    await api.post("./gradient", eventData, {headers : { user_id}})  
-
-                }catch(error){
-                   console.log(error.message) 
-                }
-           
+        try {
+            if (
+                title !== '' &&
+                color !== '' &&
+                price !== "" &&
+                date !== "" &&
+                thumbnail !== null &&
+                description !== ''
+            ) {
+                console.log("gradient has been sent")
+                await api.post("./gradient", eventData, { headers: { user_id } })
+                console.log(eventData);
+                console.log("gradient has been saved")
+            } else {
+                setErrorMessage(true)
+                setTimeout(() => {
+                    setErrorMessage(false)
+                }, 2000)
+                console.log("Missing required Data")
             }
+        } catch (error) {
+            Promise.reject(error);
+            console.log(error.message);
+        }
 
-       
-        return ""
     }
+
+
     return (
         <div>
             <Container>
@@ -109,6 +118,9 @@ const EventsPage = () => {
                         <button className="button is-link is-light" type="submit">Cancel</button>
                     </div>
                 </div>
+                { errorMessage ? (
+                    <div className="notification is-danger is-light event-validation"> Missing require information</div>
+                ): ''}
 
             </Container>
         </div>

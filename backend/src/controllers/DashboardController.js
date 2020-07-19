@@ -27,7 +27,7 @@ module.exports = {
 
     async getColortGradient(req, res) {
         const { color } = req.params;
-        const query = { color } || {}
+        const query =color ? { color } : {}
         try {
             const gradients = await Gradient.find(query)
             if (gradients) {
