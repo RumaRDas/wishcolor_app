@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
+import moment from 'moment';
 
 //Dashboard will show all events
 const Dashboard = () => {
@@ -31,7 +32,7 @@ return (
     <span>{gradient.color}</span>
     <span>{gradient.price}</span>
     <span>{gradient.description}</span>
-    <span>{gradient.date}</span>
+    <span>{moment(gradient.date).format('MMMM Do YYYY')}</span>
       
       </li>
  )
