@@ -10,6 +10,7 @@ const Login = ({ history }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("false"); 
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
@@ -17,17 +18,25 @@ const Login = ({ history }) => {
 
         const response = await api.post('/login', { email, password })
         const userId = response.data._id || false;
-        if (userId) {
-            localStorage.setItem('user', userId)
-            history.push('/dashboard')
-        } else {
-            setError(true)
-            setTimeout(() => {
-                setError(false)
-            }, 2000)
-            console.log("Missing required Data")
-        }
+        try {
+            if (userId) {
+                localStorage.setItem('user', userId)
+                history.push('/dashboard')
+            } else {
+             const { message } = response.data
+             setError(true)
+             setErrorMessage(message)
+                setTimeout(() => {
+                    setError(false)
+                    setErrorMessage("")
+                }, 2000)
+            }
 
+        }catch(error){
+            Promise.reject(error);
+            console.log(error.message);
+            
+        }
     }
 
     return (
@@ -49,7 +58,7 @@ const Login = ({ history }) => {
                     <button className="button is-link" onClick={handleSubmit}>Submit</button>
                 </div>
                 { error ? (
-                    <div className="notification is-danger is-light login-validation"> Login In not successful</div>
+                    <div className="notification is-danger is-light login-validation"> Missing require Information</div>
                 ): ''}
             </Container>
         </div>

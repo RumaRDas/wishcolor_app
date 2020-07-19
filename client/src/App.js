@@ -1,15 +1,18 @@
 import React from 'react';
 import Container from './pages/Container';
 import Routes from './Routes';
-import './styles/App.scss';
+import './styles/App.css';
 
 function App() {
   return (
     <div>
-    <Container>
+      <Container>
+        <h1>Color App</h1>
+        <div className="content">
+          <Routes />
+        </div>
 
-<Routes/>
-    </Container>
+      </Container>
     </div>
 
   );

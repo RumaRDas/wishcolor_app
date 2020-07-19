@@ -24,7 +24,7 @@ const EventsPage = () => {
     const submitHandler = async (evt) => {
         evt.preventDefault();
         const user_id = localStorage.getItem('user');
-        
+
         const eventData = new FormData();
         eventData.append('thumbnail', thumbnail)
         eventData.append('color', color)
@@ -60,11 +60,11 @@ const EventsPage = () => {
 
     }
 
-
     return (
         <div>
             <Container>
                 <h1 className="eveHeader"> Create Your Event</h1>
+                <div className="formAli">
                 <div className="field">
                     <label className="label">Upload Your Image</label>
                     <label id="thumbnail" style={{ backgroundImage: `url(${preview})` }} className={thumbnail ? 'has-thumbnail' : ''}>
@@ -109,18 +109,16 @@ const EventsPage = () => {
                         <textarea className="textarea" placeholder={'Event description'} value={description} id="description" onChange={evt => setDescription(evt.target.value)}></textarea>
                     </div>
                 </div>
+                
                 <div className="field is-grouped">
                     <div className="control">
-                        <button className="button is-link" onClick={submitHandler}>Submit</button>
-                    </div>
-                    <div className="control">
-                        <button className="button is-link is-light" type="submit">Cancel</button>
+                        <button className="submit-btn" onClick={submitHandler}>Submit</button>
                     </div>
                 </div>
                 { errorMessage ? (
                     <div className="notification is-danger is-light event-validation"> Missing require information</div>
                 ): ''}
-
+                </div>
             </Container>
         </div>
     )
