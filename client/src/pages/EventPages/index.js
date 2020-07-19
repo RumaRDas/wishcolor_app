@@ -24,8 +24,7 @@ const EventsPage = () => {
     const submitHandler = async (evt) => {
         evt.preventDefault();
         const user_id = localStorage.getItem('user');
-
-        //   console.log(title,description, price, sport,date)
+        
         const eventData = new FormData();
         eventData.append('thumbnail', thumbnail)
         eventData.append('color', color)
