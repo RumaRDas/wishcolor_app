@@ -1,0 +1,40 @@
+ul.gradient-list{
+    width: 100%;
+    list-style: none;
+    display: grid;
+    grid-template-columns:1fr 1fr ;
+    grid-gap:20px;
+    margin-bottom: 30px;
+ 
+}
+
+ul.gradient-list li{
+    display: flex;
+    flex-direction: column;
+
+}
+ul.gradient-list li header{
+    width: 100%;
+    height: 120px;
+    background-size: contain;
+  background-repeat: no-repeat;
+    border-radius: 4px;
+}
+
+ul.gradient-list li strong{
+    margin-top: 15px;
+    font-size: 24px ;
+    color: rgb(167, 98, 98);
+}
+ul.gradient-list li{
+    color: black;
+}
+ul.gradient-list button{
+    margin-right: 30px;
+}
+
+@media (max-width:768px){
+    ul.gradient-list{
+        grid-template-columns: 1fr;
+    }
+}

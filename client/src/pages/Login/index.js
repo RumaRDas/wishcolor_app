@@ -33,8 +33,8 @@ const Login = ({ history }) => {
             }
 
         } catch (error) {
-            Promise.reject(error);
-            console.log(error.message);
+            setError(true)
+            setErrorMessage("Error, the server returned  an error")
 
         }
     }
@@ -64,7 +64,7 @@ const Login = ({ history }) => {
                     
 
                 {error ? (
-                    <div className="notification is-danger is-light login-validation"> Missing require Information</div>
+                    <div className="notification is-danger is-light login-validation">{errorMessage}</div>
                 ) : ''}
                 </div>
             </Container>

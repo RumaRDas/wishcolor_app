@@ -16,5 +16,5 @@ const GradientSchema = new mongoose.Schema({
         virtuals: true
     }
 })
-GradientSchema.virtual('thumbnail_url').get(function(){ return `http://localhost:8000/files/${this.thumbnail}`})
+GradientSchema.virtual('thumbnail_url').get(function(){ return `http://localhost:4000/files/${this.thumbnail}`})
 module.exports = mongoose.model('Gradient', GradientSchema);
