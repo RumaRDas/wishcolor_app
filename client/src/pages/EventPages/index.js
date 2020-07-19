@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from 'react'
 import api from '../../services/api';
 import Container from '../Container';
-import cameraIcon from '../../assets/camera.png'
+import 'react-bulma-components/dist/react-bulma-components.min.css';
+import cameraIcon from '../../assets/camera.png';
+import { Dropdown } from 'react-bulma-components';
 import './style.css'
 
 
@@ -11,7 +13,7 @@ const EventsPage = ({ history }) => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [date, setDate] = useState("");
-    const [color, setColor] = useState("");
+    const [color, setColor] = useState("Color");
     const [thumbnail, setThumbnail] = useState(null);
     const [error, setError] = useState(false)
     const [success, SetSuccess] = useState(false);
@@ -64,7 +66,12 @@ const EventsPage = ({ history }) => {
             console.log(error.message);
         }
 
+
     }
+    const sportEventHandler = (color) => {
+        setColor(color)
+    }
+    console.log(color)
 
     return (
 
@@ -81,57 +88,66 @@ const EventsPage = ({ history }) => {
                             </div>
                         </label>
                     </div>
-
                     <div className="field">
                         <label className="label">Color</label>
-                        <div className="control">
-                            <input className="input" id="Color" type="text" placeholder={'Color Name'} value={color} onChange={evt => setColor(evt.target.value)} />
-                        </div>
-                    </div>
+                        <div className="control columns is-gapless">
+                            <div className="column is-four-fifths">
+                                <input className="input" id="Color" type="text" placeholder={'Color Name'} value={color} onChange={evt => setColor(evt.target.value)} />
+                            </div>
+                            <div className="column">
+                                <Dropdown trigger="Choose">
+                                    <a className="navbar-item" onClick={() => sportEventHandler('red')}>  Red</a>
+                                    <a className="navbar-item" onClick={() => sportEventHandler('blue')}>  Blue</a>
+                                    <a className="navbar-item" onClick={() => sportEventHandler('black')}> Black </a>
+                                </Dropdown>
+                            </div>
 
-                    <div className="field">
-                        <label className="label">Event Name</label>
-                        <div className="control">
-                            <input className="input" id="title" type="text" placeholder={'Event Title'} value={title} onChange={evt => setTitle(evt.target.value)} />
                         </div>
-                    </div>
-
-                    <div className="field">
-                        <label className="label">Price</label>
-                        <div className="control">
-                            <input className="input is-success" type="Number" placeholder={' Event price $0.00'} value={price} id="price" onChange={evt => setPrice(evt.target.value)} />
-                        </div>
-                    </div>
-
-                    <div className="field">
-                        <label className="label">Date</label>
-                        <div className="control">
-                            <input className="input is-success" type="date" placeholder={' Event Date'} value={date} id="date" onChange={evt => setDate(evt.target.value)} />
-                        </div>
-                    </div>
-
-                    <div className="field">
-                        <label className="label">Description</label>
-                        <div className="control">
-                            <textarea className="textarea" placeholder={'Event description'} value={description} id="description" onChange={evt => setDescription(evt.target.value)}></textarea>
-                        </div>
-                    </div>
-                    <div className="control">
-                        <button className="submit-btn" onClick={submitHandler}>Create Event</button>
-                    </div>
-                    <div className="control">
-                        <button className="login-btn" onClick={() => history.push('/dashboard')}>Dashboard</button>
-                    </div>
-
-                    {error ? (
-                        <div className="notification is-danger is-light event-validation"> Missing require information</div>
-                    ) : ''}
-                    {success ? (
-                        <div className="notification is-success is-light event-validation"> Event was Created successfuly</div>
-                    ) : ''}
                 </div>
+                <div className="field">
+                    <label className="label">Event Name</label>
+                    <div className="control">
+                        <input className="input" id="title" type="text" placeholder={'Event Title'} value={title} onChange={evt => setTitle(evt.target.value)} />
+                    </div>
+                </div>
+
+                <div className="field">
+                    <label className="label">Price</label>
+                    <div className="control">
+                        <input className="input is-success" type="Number" placeholder={' Event price $0.00'} value={price} id="price" onChange={evt => setPrice(evt.target.value)} />
+                    </div>
+                </div>
+
+                <div className="field">
+                    <label className="label">Date</label>
+                    <div className="control">
+                        <input className="input is-success" type="date" placeholder={' Event Date'} value={date} id="date" onChange={evt => setDate(evt.target.value)} />
+                    </div>
+                </div>
+
+                <div className="field">
+                    <label className="label">Description</label>
+                    <div className="control">
+                        <textarea className="textarea" placeholder={'Event description'} value={description} id="description" onChange={evt => setDescription(evt.target.value)}></textarea>
+                    </div>
+                </div>
+                <div className="control">
+                    <button className="submit-btn" onClick={submitHandler}>Create Event</button>
+                </div>
+                <div className="control">
+                    <button className="login-btn" onClick={() => history.push('/')}>Dashboard</button>
+                </div>
+
+                {error ? (
+                    <div className="notification is-danger is-light event-validation"> Missing require information</div>
+                ) : ''}
+                {success ? (
+                    <div className="notification is-success is-light event-validation"> Event was Created successfuly</div>
+                ) : ''}
             </div>
-        </Container>
+            </div>
+
+        </Container >
 
     )
 }
