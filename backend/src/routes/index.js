@@ -35,9 +35,9 @@ routes.post('/registration/:gradientId', RagistrationController.create)
 routes.get('/registration/:registration_id', RagistrationController.getRegistration)
 
 //Dashboard
-routes.get('/gradient', DashboardController.geAlltGradient)
-routes.get('/gradient/:gradientId', DashboardController.getGradientById)
-routes.get('/gradient/:color', DashboardController.getGradient)
+routes.get('/dashboard', DashboardController. geAlltGradient)
+routes.get('/dashboard/:gradientId', DashboardController.getGradientById)
+routes.get('/gradient/:color', DashboardController.getColortGradient)
 
 //Gradient
 routes.post('/gradient', upload.single("thumbnail"), GradientController.createGradient)

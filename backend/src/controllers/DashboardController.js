@@ -3,20 +3,29 @@ const User = require('../models/User');
 
 module.exports = {
     //todo async
-    getGradientById: function (req, res) {
+   async getGradientById(req, res) {
         const { gradientId } = req.params;
-        Gradient.findById(gradientId)
-            .then(gradient => res.json(gradient))
-            .catch(err => res.status(422).json('Gradient Id does not exists'));
+        try{
+
+            const gradient = await  Gradient.findById(gradientId)
+            if(gradient){
+                return res.json(gradient)
+            }
+
+        }catch(error){
+            return res.status(400).json({ message: 'Gradient  does not exist!' })
+
+        }
+
     },
     //todo async
-    geAlltGradient: function (req, res) {
-        Gradient.find(req.query)
-            .then(gradient => res.json(gradient))
-            .catch(err => res.status(422).json('We dont have anay gradient'));
-    },
+ geAlltGradient: function (req, res) {
+    Gradient.find(req.query)
+        .then(gradient => res.json(gradient))
+        .catch(err => res.status(422).json('We dont have anay gradient'));
+},
 
-    async getGradient(req, res) {
+    async getColortGradient(req, res) {
         const { color } = req.params;
         const query = { color } || {}
         try {
