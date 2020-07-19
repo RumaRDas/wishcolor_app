@@ -13,7 +13,8 @@ const EventsPage = ({history}) => {
     const [date, setDate] = useState("");
     const [color, setColor] = useState("");
     const [thumbnail, setThumbnail] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(false);
+    const [error, setError] = useState(false)
+    const [ success, SetSuccess] =useState(false);
 
 
     const preview = useMemo(() => {
@@ -44,13 +45,17 @@ const EventsPage = ({history}) => {
             ) {
                 console.log("gradient has been sent")
                 await api.post("./gradient", eventData, { headers: { user_id } })
+                SetSuccess(true)
+                setTimeout(() => {
+                    SetSuccess(false)
+                }, 2000)
                 // console.log(eventData);
                 // console.log("gradient has been saved")
               //  history.push('/dashboard')
             } else {
-                setErrorMessage(true)
+                setError(true)
                 setTimeout(() => {
-                    setErrorMessage(false)
+                    setError(false)
                 }, 2000)
                 // console.log("Missing required Data")
             }
@@ -112,14 +117,17 @@ const EventsPage = ({history}) => {
                     </div>
                 </div>             
                     <div className="control">
-                    <button className="submit-btn" onClick={submitHandler}>Sign in</button>
+                    <button className="submit-btn" onClick={submitHandler}>Create Event</button>
                 </div>
                 <div className="control">
                 <button className="login-btn" onClick={() => history.push('/dashboard')}>Dashboard</button>
             </div>
 
-                { errorMessage ? (
+                { error? (
                     <div className="notification is-danger is-light event-validation"> Missing require information</div>
+                ): ''}
+                {success? (
+                    <div className="notification is-success is-light event-validation"> Event was Created successfuly</div>
                 ): ''}
                 </div>
                 </div>
