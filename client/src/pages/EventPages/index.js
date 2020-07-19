@@ -5,7 +5,7 @@ import cameraIcon from '../../assets/camera.png'
 import './style.css'
 
 
-const EventsPage = () => {
+const EventsPage = ({history}) => {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -44,14 +44,15 @@ const EventsPage = () => {
             ) {
                 console.log("gradient has been sent")
                 await api.post("./gradient", eventData, { headers: { user_id } })
-                console.log(eventData);
-                console.log("gradient has been saved")
+                // console.log(eventData);
+                // console.log("gradient has been saved")
+              //  history.push('/dashboard')
             } else {
                 setErrorMessage(true)
                 setTimeout(() => {
                     setErrorMessage(false)
                 }, 2000)
-                console.log("Missing required Data")
+                // console.log("Missing required Data")
             }
         } catch (error) {
             Promise.reject(error);
@@ -61,8 +62,9 @@ const EventsPage = () => {
     }
 
     return (
-        <div>
+       
             <Container>
+            <div>
                 <h1 className="eveHeader"> Create Your Event</h1>
                 <div className="formAli">
                 <div className="field">
@@ -108,19 +110,21 @@ const EventsPage = () => {
                     <div className="control">
                         <textarea className="textarea" placeholder={'Event description'} value={description} id="description" onChange={evt => setDescription(evt.target.value)}></textarea>
                     </div>
-                </div>
-                
-                <div className="field is-grouped">
+                </div>             
                     <div className="control">
-                        <button className="submit-btn" onClick={submitHandler}>Submit</button>
-                    </div>
+                    <button className="submit-btn" onClick={submitHandler}>Sign in</button>
                 </div>
+                <div className="control">
+                <button className="login-btn" onClick={() => history.push('/dashboard')}>Dashboard</button>
+            </div>
+
                 { errorMessage ? (
                     <div className="notification is-danger is-light event-validation"> Missing require information</div>
                 ): ''}
                 </div>
+                </div>
             </Container>
-        </div>
+    
     )
 }
 

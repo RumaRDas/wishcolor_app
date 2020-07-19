@@ -10,7 +10,7 @@ const Login = ({ history }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("false"); 
+    const [errorMessage, setErrorMessage] = useState("false");
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
@@ -23,26 +23,26 @@ const Login = ({ history }) => {
                 localStorage.setItem('user', userId)
                 history.push('/dashboard')
             } else {
-             const { message } = response.data
-             setError(true)
-             setErrorMessage(message)
+                const { message } = response.data
+                setError(true)
+                setErrorMessage(message)
                 setTimeout(() => {
                     setError(false)
                     setErrorMessage("")
                 }, 2000)
             }
 
-        }catch(error){
+        } catch (error) {
             Promise.reject(error);
             console.log(error.message);
-            
+
         }
     }
 
     return (
 
-        <div>
             <Container>
+            <div>
                 <h1 className="logHeader"> Login</h1>
                 <div className="field" >
                     <div className="control">
@@ -54,14 +54,21 @@ const Login = ({ history }) => {
                         <input className="input is-info" type="password" name="password" id="password" placeholder="Password" onChange={evt => setPassword(evt.target.value)} />
                     </div>
                 </div>
-                <div className="control">
-                    <button className="button is-link" onClick={handleSubmit}>Submit</button>
-                </div>
-                { error ? (
+              
+                    <div className="control">
+                        <button className="submit-btn" onClick={handleSubmit}>Sign in</button>
+                    </div>
+                    <div className="control">
+                        <button className="login-btn" onClick={() => history.push('/register')}>Register</button>
+                    </div>
+                    
+
+                {error ? (
                     <div className="notification is-danger is-light login-validation"> Missing require Information</div>
-                ): ''}
+                ) : ''}
+                </div>
             </Container>
-        </div>
+ 
 
     )
 }
