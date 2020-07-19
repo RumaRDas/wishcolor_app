@@ -12,7 +12,7 @@ const Login = ({ history }) => {
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-        console.log("result of submit", email, password);
+        //console.log("result of submit", email, password);
 
         const response = await api.post('/login', { email, password })
         const userId = response.data._id || false;
