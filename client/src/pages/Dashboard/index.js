@@ -5,7 +5,7 @@ import  './dashbord.css'
 import moment from 'moment';
 
 //Dashboard will show all events
-const Dashboard = () => {
+const Dashboard = ({history}) => {
   const [gradients, setGradients] = useState([]);
   const [ selected, setSelected] = useState(null);
   const user_id = localStorage.getItem('user');
@@ -39,7 +39,9 @@ return (
   <button class="button is-success" onClick = {()=> filterHandler("red")} active= {selected === "red"}>Red</button>
   <button class="button is-info" onClick = {()=> filterHandler("blue")} active= {selected === "blue"}>Blue</button>
   <button class="button is-danger" onClick = {()=> filterHandler("black")} active= {selected === "black"}>Black</button>
+  <button class="button is-dark" onClick={()=> history.push('gradient')}>Gradients create</button>
 </div>
+
   </div>
  <ul className="gradient-list">
  {
