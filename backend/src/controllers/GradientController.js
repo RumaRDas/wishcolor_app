@@ -4,7 +4,7 @@ const User = require('../models/User');
 module.exports = {
     async createGradient(req, res) {
         try {
-            const { title, description, price, color } = req.body;
+            const { title, description, price, color,date } = req.body;
             const { user_id } = req.headers;
             const { filename } = req.file;
 
@@ -19,7 +19,8 @@ module.exports = {
                 color,
                 price: parseFloat(price),
                 user: user_id,
-                thumbnail: filename
+                thumbnail: filename,
+                date
             })
 
             return res.json(gradient);
