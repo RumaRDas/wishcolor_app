@@ -29,6 +29,10 @@ ul.gradient-list li strong{
 ul.gradient-list li{
     color: black;
 }
+.filter-panel{
+    display: flex;
+}
+
 ul.gradient-list button{
     margin-right: 30px;
 }

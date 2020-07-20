@@ -13,7 +13,7 @@ const EventsPage = ({ history }) => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [date, setDate] = useState("");
-    const [color, setColor] = useState("Color");
+    const [color, setColor] = useState("red");
     const [thumbnail, setThumbnail] = useState(null);
     const [error, setError] = useState(false)
     const [success, SetSuccess] = useState(false);
@@ -50,6 +50,7 @@ const EventsPage = ({ history }) => {
                 SetSuccess(true)
                 setTimeout(() => {
                     SetSuccess(false)
+                    history.push("/")
                 }, 2000)
                 // console.log(eventData);
                 // console.log("gradient has been saved")
@@ -135,7 +136,7 @@ const EventsPage = ({ history }) => {
                     <button className="submit-btn" onClick={submitHandler}>Create Event</button>
                 </div>
                 <div className="control">
-                    <button className="login-btn" onClick={() => history.push('/')}>Dashboard</button>
+                    <button className="login-btn" onClick={() => history.push('/')}>Cancel</button>
                 </div>
 
                 {error ? (
