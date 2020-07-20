@@ -38,6 +38,15 @@ ul.gradient-list button{
     margin-right: 30px;
 }
 
+ul.gradient-list  header button{
+    font-size: 10px;
+
+}
+ul.gradient-list  header div{
+display: flex;
+flex-direction: row-reverse;
+}
+
 @media (max-width:768px){
     ul.gradient-list{
         grid-template-columns: 1fr;

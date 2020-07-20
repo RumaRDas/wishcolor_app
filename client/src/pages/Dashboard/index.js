@@ -8,6 +8,8 @@ import moment from 'moment';
 const Dashboard = ({history}) => {
   const [gradients, setGradients] = useState([]);
   const [ selected, setSelected] = useState(null);
+  const [error, setError] = useState(false)
+  const [success, SetSuccess] = useState(false);
   const user_id = localStorage.getItem('user');
 
   //  console.log(user_id)
@@ -26,6 +28,25 @@ getGradients(query)
     setSelected("myevents")
     const response = await api.get( `/user/gradients`, { headers: { user_id } } )
     setGradients(response.data)
+  }
+
+  const deleteEventHandler = async (gradientId) => {
+    try{
+  
+      const deleteGradient = await api.delete(`/gradient/${gradientId}`)
+      SetSuccess(true)
+      setTimeout(() => {
+          SetSuccess(false)
+          filterHandler(null)
+      }, 2500)
+    }catch(error){
+
+      setError(true)
+      setTimeout(() => {
+          setError(false)
+      }, 2000)
+    }
+
   }
 
   const getGradients = async (filter) => {
@@ -55,7 +76,15 @@ return (
  {
     gradients.map(gradient => (
       <li key={gradient._id}> 
-    <header style={{ backgroundImage: `url(${gradient.thumbnail_url})`}}/>
+    <header style={{ backgroundImage: `url(${gradient.thumbnail_url})`}} className="deletBtn">
+    {
+      gradient.user === user_id ?
+      <div>
+    <button class="button is-danger is small" onClick = {() => deleteEventHandler(gradient._id)}>Delete</button>
+    </div>
+    : ""
+    }
+    </header>
     <strong>{gradient.title}</strong>
     <span>Gradient Date: {moment(gradient.date).format('MMMM Do YYYY')}</span>
     <span> Gradient Top:{gradient.color}</span>
@@ -68,8 +97,14 @@ return (
  )
  )
  }
- 
+
  </ul>
+ {error ? (
+  <div className="notification is-danger is-light event-validation"> Error when deleting Gradient</div>
+) : ''}
+{success ? (
+  <div className="notification is-success is-light event-validation"> Deleted successfuly</div>
+) : ''}
  </div>
   </>
 
