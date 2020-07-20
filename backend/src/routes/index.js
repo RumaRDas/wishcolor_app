@@ -10,6 +10,7 @@ const ApprovalController = require('../controllers/ApprovalController');
 const RejectionController = require('../controllers/RejectionController');
 
 
+
 //Uploading file
 const uploadConfig = require('../config/upload')
 const routes = express.Router();
@@ -38,6 +39,7 @@ routes.get('/registration/:registration_id', RagistrationController.getRegistrat
 routes.get('/dashboard', DashboardController. geAlltGradient)
 routes.get('/dashboard/:gradientId', DashboardController.getGradientById)
 routes.get('/gradient/:color', DashboardController.getColortGradient)
+routes.get('/user/gradients', DashboardController.getColortGradientbyUseuId)
 
 //Gradient
 routes.post('/gradient', upload.single("thumbnail"), GradientController.createGradient)

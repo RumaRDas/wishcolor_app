@@ -22,14 +22,16 @@ getGradients(query)
 
   }
 
-  const myeventsHandler = () => {
-    setGradients("myevents")
-
+  const myeventsHandler = async () => {
+    setSelected("myevents")
+    const response = await api.get( `/user/gradients`, { headers: { user_id } } )
+    setGradients(response.data)
   }
 
   const getGradients = async (filter) => {
     const url = filter ? `/gradient/${filter}` : `/dashboard`
     const response = await api.get(url , { headers: { user_id } })
+    
  setGradients(response.data)
   }
 
@@ -38,17 +40,17 @@ getGradients(query)
 return (
 
   <>
-  <div> 
-  <div class="buttons filter-panel">
-  <button class="button is-danger" onClick = {()=> filterHandler(null)} active= {selected === null}>ALL Color</button>
-  <button class="button is-danger" onClick = {()=> filterHandler("")} active= {selected === "black"}>My Gradieny</button>
+  <div className = "filter-panel"> 
+  <div class="field has-addons ">
+  <button class="button is-warning" onClick = {()=> filterHandler(null)} active= {selected === null}>ALL Color</button>
+  <button class="button is-danger" onClick ={ myeventsHandler} active= {selected === "myevents"}>My Gradieny</button>
   <button class="button is-success" onClick = {()=> filterHandler("red")} active= {selected === "red"}>Red</button>
   <button class="button is-info" onClick = {()=> filterHandler("blue")} active= {selected === "blue"}>Blue</button>
   <button class="button is-danger" onClick = {()=> filterHandler("black")} active= {selected === "black"}>Black</button>
-  <button class="button is-danger" onClick = {()=> filterHandler("black")} active= {selected === "black"}>Black</button>
 </div>
-
+<button class="button is-dark" onClick = {()=> history.push("/gradient")} >Black</button>
   </div>
+  <div>
  <ul className="gradient-list">
  {
     gradients.map(gradient => (
@@ -68,6 +70,7 @@ return (
  }
  
  </ul>
+ </div>
   </>
 
 )
