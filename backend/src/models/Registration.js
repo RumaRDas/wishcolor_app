@@ -3,14 +3,17 @@ const mongoose = require('mongoose');
 const RegisterSchema = new mongoose.Schema({
     date: String,
     approved: Boolean,
-    color: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
- gradient:{
-     type: mongoose.Schema.Types.ObjectId,
-     ref: "Gradient"
- }
+    gradient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Gradient"
+    },
+    event : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref : "Event"
+    }
 })
 module.exports = mongoose.model('Registration', RegisterSchema);
