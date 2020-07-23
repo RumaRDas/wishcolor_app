@@ -10,9 +10,9 @@ module.exports = {
 			if (!existentUser) {
 				const hashedPassword = await bcrypt.hash(password, 10);
 				const user = await User.create({
+					email,
 					firstName,
 					lastName,
-					email,
 					password: hashedPassword,
 				});
 				return res.json({

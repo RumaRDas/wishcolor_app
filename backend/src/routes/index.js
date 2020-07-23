@@ -1,5 +1,7 @@
 const express = require('express');
 const multer = require('multer');
+const verifyToken = require('../config/verufyToken');
+const uploadConfig = require('../config/upload')
 //All Controllers
 const UserController = require('../controllers/UserController');
 const GradientController = require('../controllers/GradientController');
@@ -9,10 +11,8 @@ const RagistrationController = require('../controllers/RagistrationController');
 const ApprovalController = require('../controllers/ApprovalController');
 const RejectionController = require('../controllers/RejectionController');
 
-
-
 //Uploading file
-const uploadConfig = require('../config/upload')
+
 const routes = express.Router();
 const upload = multer(uploadConfig);
 
@@ -36,6 +36,8 @@ routes.post('/registration/:gradientId', RagistrationController.create)
 routes.get('/registration/:registration_id', RagistrationController.getRegistration)
 
 //Dashboard
+//routes.get('/dashboard', verifyToken, DashboardController. geAlltGradient)
+//Dashboard
 routes.get('/dashboard', DashboardController. geAlltGradient)
 routes.get('/dashboard/:gradientId', DashboardController.getGradientById)
 routes.get('/gradient/:color', DashboardController.getColortGradient)
@@ -47,7 +49,7 @@ routes.delete('/gradient/:gradientId', GradientController.delete)
 
 
 //user
-routes.post('/register', UserController.createUser)
+routes.post('user/register', UserController.createUser)
 routes.get('/user/:userId', UserController.getUserById)
 
 module.exports = routes;

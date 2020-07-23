@@ -11,7 +11,7 @@ const Registration = ({ history }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async evt => {
         evt.preventDefault();
@@ -21,11 +21,11 @@ const Registration = ({ history }) => {
                 password !== '' &&
                 firstName !== '' &&
                 lastName !== '') {
-                const response = await api.post('/register', { firstName, lastName, email, password })
+                const response = await api.post('user/register', { firstName, lastName, email, password })
                 const userId = response.data._id || false;
                 if (userId) {
                     localStorage.setItem('user', userId)
-                    history.push('/dashboard')
+                    history.push('/login')
                 } else {
                     const { message } = response.data
                     setError(true)
@@ -48,7 +48,7 @@ const Registration = ({ history }) => {
 
         } catch (error) {
             Promise.reject(error);
-            console.log(error.message);
+            console.log(`somthing wrong${error.message}`);
         }
     }
 
@@ -88,7 +88,7 @@ const Registration = ({ history }) => {
 
                 {error ? (
                     <div className="notification is-danger is-light event-validation"> {errorMessage}</div>
-                ) : ''}
+                ) : ""}
             </div>
         </Container>
     )

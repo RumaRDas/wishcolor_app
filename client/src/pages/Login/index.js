@@ -21,7 +21,7 @@ const Login = ({ history }) => {
         try {
             if (userId) {
                 localStorage.setItem('user', userId)
-                history.push('/dashboard')
+                history.push('/')
             } else {
                 const { message } = response.data
                 setError(true)

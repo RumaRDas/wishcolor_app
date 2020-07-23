@@ -137,6 +137,7 @@ const EventsPage = ({ history }) => {
                 </div>
                 <div className="control">
                     <button className="login-btn" onClick={() => history.push('/')}>Cancel</button>
+        
                 </div>
 
                 {error ? (
